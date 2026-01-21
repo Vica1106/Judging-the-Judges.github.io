@@ -16,7 +16,7 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
-      <Router>
+      <Router basename="/Judging-the-Judges.github.io">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
