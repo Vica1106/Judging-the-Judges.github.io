@@ -75,14 +75,27 @@ yarn build
 
 This creates an optimized build in the `build` folder.
 
-## 🚢 Deploy to GitHub Pages
+## 🚢 Deployment
 
-Deploy to GitHub Pages:
+This project uses **GitHub Actions** for automatic deployment.
+
+### Auto Deploy
+Every push to the `main` branch automatically:
+1. Builds the project
+2. Deploys to GitHub Pages
+
+Just push your changes:
 ```bash
-npm run deploy
-# or
-yarn deploy
+git add .
+git commit -m "your commit message"
+git push origin main
 ```
+
+The website will be updated automatically in a few minutes! ✨
+
+### GitHub Pages Setup
+1. Go to your repo **Settings** → **Pages**
+2. Under "Build and deployment", select **GitHub Actions**
 
 ## 📝 Available Scripts
 
@@ -90,7 +103,6 @@ yarn deploy
 |---------|-------------|
 | `npm start` | Run development server |
 | `npm run build` | Build for production |
-| `npm run deploy` | Deploy to GitHub Pages |
 | `npm test` | Run tests |
 
 ## 🛠️ Built With
