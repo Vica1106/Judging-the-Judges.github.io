@@ -2,7 +2,7 @@
   "name": "treact",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vicayu.github.io/Judging-the-Judges.github.io",
+  "homepage": "https://vica1106.github.io/Judging-the-Judges.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.0",
     "@testing-library/react": "^13.4.0",

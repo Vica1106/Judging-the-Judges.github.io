@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.js": "/Judging-the-Judges.github.io/static/js/main.eb842acf.js",
+    "static/media/homepic.png": "/Judging-the-Judges.github.io/static/media/homepic.6edd35095754651a786b.png",
+    "static/media/logo.png": "/Judging-the-Judges.github.io/static/media/logo.273047796e05816f96f9.png",
+    "index.html": "/Judging-the-Judges.github.io/index.html",
+    "static/media/github-icon.svg": "/Judging-the-Judges.github.io/static/media/github-icon.2012dbb259c77fd6aea5e21004ac0818.svg",
+    "static/media/twitter-icon.svg": "/Judging-the-Judges.github.io/static/media/twitter-icon.828ecd04e4d4a4b4704330d1b8b1ebb9.svg",
+    "static/media/menu.svg": "/Judging-the-Judges.github.io/static/media/menu.644fa295fdd5f662e642ba6bfb084239.svg",
+    "static/media/x.svg": "/Judging-the-Judges.github.io/static/media/x.6c9a4ba71a333be7b021fc6da39d864c.svg",
+    "main.eb842acf.js.map": "/Judging-the-Judges.github.io/static/js/main.eb842acf.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.eb842acf.js"
+  ]
+}

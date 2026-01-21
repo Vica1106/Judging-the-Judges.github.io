@@ -10,7 +10,7 @@
 
 ## 🌐 Live Demo
 
-Visit: [https://vicayu.github.io/Judging-the-Judges.github.io](https://vicayu.github.io/Judging-the-Judges.github.io)
+Visit: [https://vica1106.github.io/Judging-the-Judges.github.io](https://vica1106.github.io/Judging-the-Judges.github.io)
 
 ## 📁 Project Structure
 
