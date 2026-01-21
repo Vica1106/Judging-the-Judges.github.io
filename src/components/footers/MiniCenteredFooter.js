@@ -38,12 +38,12 @@ export default () => {
             <LogoText>JTJ</LogoText>
           </LogoContainer>
           <LinksContainer>
-            <Link href="/">Home</Link>
-            <Link href="/leaderboard">Leaderboard</Link>
-            <Link href="/prompts">Prompts</Link>
-            <Link href="/results">Results</Link>
-            <Link href="/team">Team</Link>
-            <Link href="/blog">Blog</Link>
+            <Link href="#/">Home</Link>
+            <Link href="#/leaderboard">Leaderboard</Link>
+            <Link href="#/prompts">Prompts</Link>
+            <Link href="#/results">Results</Link>
+            <Link href="#/team">Team</Link>
+            <Link href="#/blog">Blog</Link>
           </LinksContainer>
           <SocialLinksContainer>
             <SocialLink href="https://github.com/Vica1106/Judging-the-Judges" target="_blank">

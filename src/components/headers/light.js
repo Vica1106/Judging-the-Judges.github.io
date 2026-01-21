@@ -59,12 +59,12 @@ export const DesktopNavLinks = tw.nav`
 export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "lg" }) => {
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink href="/">Home</NavLink>
-      <NavLink href="/leaderboard">Leaderboard</NavLink>
-      <NavLink href="/prompts">Prompts</NavLink>
-      <NavLink href="/results">Results</NavLink>
-      <NavLink href="/team">Team</NavLink>
-      <NavLink href="/blog">Blog</NavLink>
+      <NavLink href="#/">Home</NavLink>
+      <NavLink href="#/leaderboard">Leaderboard</NavLink>
+      <NavLink href="#/prompts">Prompts</NavLink>
+      <NavLink href="#/results">Results</NavLink>
+      <NavLink href="#/team">Team</NavLink>
+      <NavLink href="#/blog">Blog</NavLink>
       <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} href="https://github.com/Vica1106/Judging-the-Judges" target="_blank">
         GitHub
       </PrimaryLink>
@@ -75,7 +75,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass];
 
   const defaultLogoLink = (
-    <LogoLink href="/">
+    <LogoLink href="#/">
       <img src={logo} alt="logo" />
       JTJ
     </LogoLink>

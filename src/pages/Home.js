@@ -54,7 +54,7 @@ export default () => {
                   <Description>
                   We use an iterative ranking-and-improvement pipeline, combining LLM judges and human evaluations, to identify prompt styles that best support human understanding.
                     </Description>
-                  <PrimaryButton as="a" href="/leaderboard" buttonRounded={true}>
+                  <PrimaryButton as="a" href="#/leaderboard" buttonRounded={true}>
                     View Leaderboard
                   </PrimaryButton>
                 </TextContent>
