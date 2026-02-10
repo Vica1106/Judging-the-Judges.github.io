@@ -8,6 +8,12 @@ import Footer from "components/footers/MiniCenteredFooter.js";
 import { Container, ContentWithPaddingXl } from "components/misc/Layouts";
 import { SectionHeading, Subheading as SubheadingBase } from "components/misc/Headings";
 
+import team1 from "images/team1.JPG";
+import team2 from "images/team2.png";
+
+import ucsdLogo from "images/ucsd.png";
+import hondaLogo from "images/99plab.png";
+
 const HeadingRow = tw.div`flex flex-col items-center`;
 const Heading = tw(SectionHeading)`text-gray-900`;
 const Subheading = tw(SubheadingBase)`text-primary-500 mb-4`;
@@ -28,67 +34,54 @@ const MemberBio = tw.p`text-gray-600 mt-3 text-sm`;
 const SocialLinks = tw.div`flex justify-center gap-4 mt-4`;
 const SocialLink = tw.a`text-gray-400 hover:text-primary-500 transition duration-300`;
 
-const AffiliationSection = tw.div`mt-16 text-center`;
+const TASection = tw.div`mt-16 text-center`;
+const TATitle = tw.h3`text-xl font-bold text-gray-900 mb-2`;
+const TAName = tw.p`text-gray-600 font-medium text-lg`;
+
+const AffiliationSection = tw.div`mt-12 text-center`;
 const AffiliationTitle = tw.h3`text-xl font-bold text-gray-900 mb-6`;
-const AffiliationLogos = tw.div`flex flex-wrap justify-center gap-8 items-center`;
-const AffiliationLogo = tw.div`text-gray-600 font-semibold text-lg`;
+const AffiliationLogos = tw.div`flex flex-wrap justify-center gap-16 items-start`;
+const AffiliationItem = tw.div`flex flex-col items-center`;
+const AffiliationLogoText = tw.div`text-gray-700 font-semibold text-lg mb-4`;
+const AffiliationLogoImg = tw.img`h-16 md:h-20 object-contain`;
 
 // Sample team member data - replace with your real information
 const teamMembers = [
   {
-    name: "Team Member 1",
-    role: "Project Lead",
-    bio: "Research focus on LLM evaluation and AI safety.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
-    twitter: "#",
+    name: "Haoyang Yu",
+    bio: "UCSD DSC Major, Cognitive Science And Mathematics Minor.",
+    image: team1,
+    linkedin: "https://www.linkedin.com/in/haoyang-yu-8b1997257/",
+    github: "https://github.com/Vica1106"
+  },
+  {
+    name: "Jessie Zhang",
+    bio: "UCSD DSC Major, Mathematics Minor",
+    image: team2,
+    linkedin: "https://www.linkedin.com/in/jiaqing-zhang-a86718274/",
+  },
+  {
+    name: "Jessica Zhang",
+    bio: "UCSD DSC Major, Cognitive Science Minor",
+    image: "",
     linkedin: "#",
     github: "#"
   },
   {
-    name: "Team Member 2",
-    role: "Research Scientist",
-    bio: "Specializes in natural language processing and machine learning.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
-    twitter: "#",
+    name: "Anduo Wang",
+    bio: "UCSD DSC Major",
+    image: "",
     linkedin: "#",
     github: "#"
   },
   {
-    name: "Team Member 3",
-    role: "Research Engineer",
-    bio: "Expert in building scalable evaluation systems.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
-    twitter: "#",
-    linkedin: "#",
-    github: "#"
+    name: "Rajeev Chhajer",
+    role: "Advisor"
   },
   {
-    name: "Team Member 4",
-    role: "Data Scientist",
-    bio: "Focus on statistical analysis and bias detection.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
-    twitter: "#",
-    linkedin: "#",
-    github: "#"
+    name: "Ryan Lingo",
+    role: "Advisor"
   },
-  {
-    name: "Team Member 5",
-    role: "Research Assistant",
-    bio: "Working on prompt engineering and evaluation metrics.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
-    twitter: "#",
-    linkedin: "#",
-    github: "#"
-  },
-  {
-    name: "Team Member 6",
-    role: "Advisor",
-    bio: "Professor with expertise in AI alignment and evaluation.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
-    twitter: "#",
-    linkedin: "#",
-    github: "#"
-  }
 ];
 
 export default () => {
@@ -135,12 +128,23 @@ export default () => {
             ))}
           </TeamGrid>
 
+          <TASection>
+            <TATitle>Our TA</TATitle>
+            <TAName>Lucas Venetoulias - DSC 180B</TAName>
+            <TAName>Amirhossein Panahi - DSC 180A</TAName>
+          </TASection>
+
           <AffiliationSection>
             <AffiliationTitle>Affiliations</AffiliationTitle>
             <AffiliationLogos>
-              <AffiliationLogo>University Name</AffiliationLogo>
-              <AffiliationLogo>Research Lab</AffiliationLogo>
-              <AffiliationLogo>AI Institute</AffiliationLogo>
+              <AffiliationItem>
+                <AffiliationLogoText>University of California San Diego</AffiliationLogoText>
+                <AffiliationLogoImg src={ucsdLogo} alt="UC San Diego" />
+              </AffiliationItem>
+              <AffiliationItem>
+                <AffiliationLogoText>Honda Research Institute 99P Lab</AffiliationLogoText>
+                <AffiliationLogoImg src={hondaLogo} alt="Honda Research Institute 99P Lab" />
+              </AffiliationItem>
             </AffiliationLogos>
           </AffiliationSection>
         </ContentWithPaddingXl>

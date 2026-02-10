@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -10,6 +10,8 @@ import { SectionHeading, Subheading as SubheadingBase } from "components/misc/He
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
 
 import homePic from "images/homepic.png";
+import homePic1 from "images/homepic1.png";
+import overallPipeline from "images/overall_pipeline.png";
 
 const HeroContainer = tw.div`relative py-20 md:py-24`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row lg:items-center max-w-screen-xl mx-auto`;
@@ -27,7 +29,24 @@ const PrimaryButton = styled(PrimaryButtonBase)(props => [
 ]);
 
 const IllustrationContainer = tw.div`flex justify-center lg:justify-end items-center`;
-const HeroImage = tw.img`min-w-0 w-full max-w-lg xl:max-w-xl`;
+
+const ImageWrapper = styled.div`
+  ${tw`relative min-w-0 w-full max-w-lg xl:max-w-xl`}
+`;
+
+const HeroImage = styled.img`
+  ${tw`w-full`}
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: ${props => props.isActive ? 1 : 0};
+  transition: opacity 1s ease-in-out;
+`;
+
+const HeroImageStatic = styled.img`
+  ${tw`w-full`}
+  visibility: hidden;
+`;
 
 const StatsContainer = tw.div`mt-20 flex flex-col sm:flex-row justify-center items-center sm:items-stretch`;
 const Stat = tw.div`flex flex-col items-center text-center p-4 sm:p-8 tracking-wide`;
@@ -39,7 +58,25 @@ const Feature = tw.li`flex items-center`;
 const FeatureIcon = tw.span`w-5 h-5 bg-primary-500 rounded-full flex-shrink-0`;
 const FeatureText = tw.span`ml-3 font-medium text-gray-700`;
 
+const PipelineSection = tw.div`mt-20 text-center`;
+const PipelineHeading = tw(SectionHeading)`text-3xl sm:text-4xl font-bold`;
+const PipelineDescription = tw.p`mt-4 text-sm md:text-base lg:text-lg font-medium leading-relaxed text-gray-600 max-w-3xl mx-auto`;
+const PipelineImageContainer = tw.div`mt-10 flex justify-center`;
+const PipelineImage = tw.img`w-full max-w-6xl rounded-lg shadow-xl`;
+
+const images = [homePic, homePic1];
+
 export default () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 4000); // Rotate every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <AnimationRevealPage>
       <Header />
@@ -61,7 +98,19 @@ export default () => {
               </LeftColumn>
               <RightColumn>
                 <IllustrationContainer>
-                  <HeroImage src={homePic} alt="Judging the Judges" />
+                  <ImageWrapper>
+                    {/* Hidden image to maintain container size */}
+                    <HeroImageStatic src={homePic} alt="" />
+                    {/* Rotating images */}
+                    {images.map((img, index) => (
+                      <HeroImage
+                        key={index}
+                        src={img}
+                        alt={`Judging the Judges ${index + 1}`}
+                        isActive={index === activeIndex}
+                      />
+                    ))}
+                  </ImageWrapper>
                 </IllustrationContainer>
               </RightColumn>
             </TwoColumn>
@@ -82,6 +131,15 @@ export default () => {
             </Stat>
           </StatsContainer>
 
+          <PipelineSection>
+            <PipelineHeading>Our Pipeline</PipelineHeading>
+            <PipelineDescription>
+              An iterative ranking-and-improvement pipeline that combines LLM judges with human evaluations to systematically identify and refine the most effective prompt styles.
+            </PipelineDescription>
+            <PipelineImageContainer>
+              <PipelineImage src={overallPipeline} alt="Overall Pipeline" />
+            </PipelineImageContainer>
+          </PipelineSection>
 
           <FeatureList>
             <Feature>
