@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -49,6 +49,23 @@ const EmptyCell = tw.span`text-gray-400`;
 const SectionTitle = tw.h3`text-2xl font-bold text-gray-900 mt-16 mb-6 text-center`;
 const SmallTableContainer = tw.div`mt-6 overflow-x-auto max-w-2xl mx-auto`;
 
+const SortToggleContainer = tw.div`flex justify-center mt-8 mb-4`;
+const SortToggleWrapper = styled.div`
+  ${tw`relative bg-gray-200 rounded-full p-1 flex`}
+`;
+const SortSlider = styled.div`
+  ${tw`absolute bg-primary-500 rounded-full transition-all duration-300 ease-in-out`}
+  top: 4px;
+  bottom: 4px;
+  width: calc(50% - 4px);
+  left: ${props => props.isLLM ? 'calc(50% + 2px)' : '4px'};
+`;
+const SortOption = styled.button`
+  ${tw`relative z-10 px-6 py-2 font-semibold transition-colors duration-300 rounded-full`}
+  ${props => props.active ? tw`text-white` : tw`text-gray-600`}
+`;
+const SortLabel = tw.span`text-sm text-gray-500 mx-4`;
+
 // Round 1 only data (sorted by Elo for LLM rank within Round 1)
 const round1Data = [
   { promptStyle: "Casual", llmElo: 1937.16, llmRank: 1 },
@@ -67,21 +84,30 @@ const round1Data = [
 // 0% = perfect agreement, 100% = maximum disagreement
 //
 const leaderboardData = [
-  // Round 1 (Original)
-  { promptStyle: "Baseline", humanRank: null, llmElo: 1436.33, llmRank: 7, variance: null },
-  { promptStyle: "3 Steps", humanRank: null, llmElo: 1614.65, llmRank: 4, variance: null },
-  { promptStyle: "5 Steps", humanRank: null, llmElo: 1295.80, llmRank: 8, variance: null },
-  { promptStyle: "Academic", humanRank: null, llmElo: 756.23, llmRank: 10, variance: null },
-  { promptStyle: "Casual", humanRank: null, llmElo: 1933.70, llmRank: 3, variance: null },
-  // Round 2 (Improved)
-  { promptStyle: "Baseline (Improved)", humanRank: null, llmElo: 1583.77, llmRank: 5, variance: null },
-  { promptStyle: "3 Steps (Improved)", humanRank: null, llmElo: 1954.26, llmRank: 1, variance: null },
-  { promptStyle: "5 Steps (Improved)", humanRank: null, llmElo: 1486.98, llmRank: 6, variance: null },
-  { promptStyle: "Academic (Improved)", humanRank: null, llmElo: 998.59, llmRank: 9, variance: null },
-  { promptStyle: "Casual (Improved)", humanRank: null, llmElo: 1939.70, llmRank: 2, variance: null },
+  // Ordered by Human Rank
+  { promptStyle: "Baseline (Improved)", humanRank: 1, humanScore: 7.13, llmElo: 1583.77, llmRank: 5, variance: 44.4 },
+  { promptStyle: "3 Steps", humanRank: 2, humanScore: 6.80, llmElo: 1614.65, llmRank: 4, variance: 22.2 },
+  { promptStyle: "Casual", humanRank: 3, humanScore: 6.63, llmElo: 1933.70, llmRank: 3, variance: 0 },
+  { promptStyle: "3 Steps (Improved)", humanRank: 4, humanScore: 6.61, llmElo: 1954.26, llmRank: 1, variance: 33.3 },
+  { promptStyle: "Casual (Improved)", humanRank: 5, humanScore: 6.19, llmElo: 1939.70, llmRank: 2, variance: 33.3 },
+  { promptStyle: "5 Steps", humanRank: 6, humanScore: 5.98, llmElo: 1295.80, llmRank: 8, variance: 22.2 },
+  { promptStyle: "5 Steps (Improved)", humanRank: 7, humanScore: 5.72, llmElo: 1486.98, llmRank: 6, variance: 11.1 },
+  { promptStyle: "Baseline", humanRank: 8, humanScore: 5.41, llmElo: 1436.33, llmRank: 7, variance: 11.1 },
+  { promptStyle: "Academic (Improved)", humanRank: 9, humanScore: 3.38, llmElo: 998.59, llmRank: 9, variance: 0 },
+  { promptStyle: "Academic", humanRank: 10, humanScore: 1.13, llmElo: 756.23, llmRank: 10, variance: 0 },
 ];
 
 export default () => {
+  const [sortBy, setSortBy] = useState("human");
+
+  const sortedData = [...leaderboardData].sort((a, b) => {
+    if (sortBy === "human") {
+      return a.humanRank - b.humanRank;
+    } else {
+      return a.llmRank - b.llmRank;
+    }
+  });
+
   return (
     <AnimationRevealPage>
       <Header />
@@ -94,57 +120,90 @@ export default () => {
 
           <DescriptionSection>
             <DescriptionParagraph>
-              Prompt styles are ranked by <strong>human evaluation</strong> (gold standard), with LLM Elo scores for comparison. The <strong>rank variance</strong> measures disagreement: 0% = full agreement, 100% = maximum disagreement.
+            Compare human and LLM rankings. Variance shows disagreement: 0% = agreement, 100% = max disagreement.
             </DescriptionParagraph>
           </DescriptionSection>
+
+          <SortToggleContainer>
+            <SortToggleWrapper>
+              <SortSlider isLLM={sortBy === "llm"} />
+              <SortOption active={sortBy === "human"} onClick={() => setSortBy("human")}>
+                Human Rank
+              </SortOption>
+              <SortOption active={sortBy === "llm"} onClick={() => setSortBy("llm")}>
+                LLM Rank
+              </SortOption>
+            </SortToggleWrapper>
+          </SortToggleContainer>
 
           <TableContainer>
             <Table>
               <TableHead>
                 <tr>
-                  <TableHeader>Human Rank</TableHeader>
-                  <TableHeader>Prompt Style</TableHeader>
-                  <TableHeader>LLM Elo Score</TableHeader>
-                  <TableHeader>LLM Rank</TableHeader>
-                  <TableHeader>Rank Variance</TableHeader>
+                  {sortBy === "human" ? (
+                    <>
+                      <TableHeader>Human Rank</TableHeader>
+                      <TableHeader>Prompt Style</TableHeader>
+                      <TableHeader>Human Score</TableHeader>
+                      <TableHeader>LLM Elo</TableHeader>
+                      <TableHeader>LLM Rank</TableHeader>
+                      <TableHeader>Rank Variance</TableHeader>
+                    </>
+                  ) : (
+                    <>
+                      <TableHeader>LLM Rank</TableHeader>
+                      <TableHeader>Prompt Style</TableHeader>
+                      <TableHeader>LLM Elo</TableHeader>
+                      <TableHeader>Human Score</TableHeader>
+                      <TableHeader>Human Rank</TableHeader>
+                      <TableHeader>Rank Variance</TableHeader>
+                    </>
+                  )}
                 </tr>
               </TableHead>
               <TableBody>
-                {leaderboardData.map((item, index) => (
+                {sortedData.map((item, index) => (
                   <TableRow key={index}>
+                    {sortBy === "human" ? (
+                      <>
+                        <TableCell>
+                          <RankBadge rank={item.humanRank}>{item.humanRank}</RankBadge>
+                        </TableCell>
+                        <TableCell tw="font-semibold">{item.promptStyle}</TableCell>
+                        <TableCell>
+                          <span tw="font-bold text-primary-500">{item.humanScore.toFixed(2)}</span>
+                        </TableCell>
+                        <TableCell>
+                          <span tw="font-medium">{item.llmElo}</span>
+                        </TableCell>
+                        <TableCell>
+                          <span tw="font-medium">{item.llmRank}</span>
+                        </TableCell>
+                      </>
+                    ) : (
+                      <>
+                        <TableCell>
+                          <RankBadge rank={item.llmRank}>{item.llmRank}</RankBadge>
+                        </TableCell>
+                        <TableCell tw="font-semibold">{item.promptStyle}</TableCell>
+                        <TableCell>
+                          <span tw="font-medium">{item.llmElo}</span>
+                        </TableCell>
+                        <TableCell>
+                          <span tw="font-bold text-primary-500">{item.humanScore.toFixed(2)}</span>
+                        </TableCell>
+                        <TableCell>
+                          <span tw="font-medium">{item.humanRank}</span>
+                        </TableCell>
+                      </>
+                    )}
                     <TableCell>
-                      {item.humanRank ? (
-                        <RankBadge rank={item.humanRank}>{item.humanRank}</RankBadge>
-                      ) : (
-                        <EmptyCell>—</EmptyCell>
-                      )}
-                    </TableCell>
-                    <TableCell tw="font-semibold">{item.promptStyle}</TableCell>
-                    <TableCell>
-                      {item.llmElo ? (
-                        <span tw="font-medium">{item.llmElo}</span>
-                      ) : (
-                        <EmptyCell>—</EmptyCell>
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      {item.llmRank ? (
-                        <span tw="font-medium">{item.llmRank}</span>
-                      ) : (
-                        <EmptyCell>—</EmptyCell>
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      {item.variance !== null ? (
-                        <VarianceContainer>
-                          <span tw="font-medium w-12">{item.variance}%</span>
-                          <VarianceBarBg>
-                            <VarianceBar variance={item.variance} />
-                          </VarianceBarBg>
-                        </VarianceContainer>
-                      ) : (
-                        <EmptyCell>—</EmptyCell>
-                      )}
+                      <VarianceContainer>
+                        <span tw="font-medium w-12">{item.variance}%</span>
+                        <VarianceBarBg>
+                          <VarianceBar variance={item.variance} />
+                        </VarianceBarBg>
+                      </VarianceContainer>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -175,6 +234,26 @@ export default () => {
               </TableBody>
             </Table>
           </SmallTableContainer>
+
+          <SectionTitle>How Variance is Calculated</SectionTitle>
+          <DescriptionSection>
+            <DescriptionParagraph>
+              The <strong>Rank Variance</strong> measures the disagreement between human and LLM rankings using a normalized metric:
+            </DescriptionParagraph>
+            <DescriptionParagraph tw="font-mono bg-gray-100 p-4 rounded-lg text-center">
+              Variance = |Human Rank - LLM Rank| ÷ (Max Rank - 1) × 100%
+            </DescriptionParagraph>
+            <DescriptionParagraph>
+              With 10 prompt styles, the maximum possible rank difference is 9. This normalization yields a percentage where:
+            </DescriptionParagraph>
+            <DescriptionParagraph>
+              • <strong>0%</strong> = Perfect agreement (same rank for both human and LLM)<br/>
+              • <strong>100%</strong> = Maximum disagreement (ranks differ by 9 positions)
+            </DescriptionParagraph>
+            <DescriptionParagraph>
+              <strong>Example:</strong> If a prompt has Human Rank = 1 and LLM Rank = 5, the variance is |1 - 5| ÷ 9 × 100 = <strong>44.4%</strong>
+            </DescriptionParagraph>
+          </DescriptionSection>
         </ContentWithPaddingXl>
       </Container>
       <Footer />
