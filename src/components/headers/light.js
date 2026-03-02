@@ -9,6 +9,9 @@ import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 import logo from "../../images/logo.png";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
+import { ReactComponent as GithubIcon } from "feather-icons/dist/icons/github.svg";
+import { ReactComponent as FileTextIcon } from "feather-icons/dist/icons/file-text.svg";
+import { ReactComponent as ImageIcon } from "feather-icons/dist/icons/image.svg";
 
 const Header = tw.header`
   flex justify-between items-center
@@ -26,11 +29,32 @@ export const NavLink = tw.a`
   pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-500
 `;
 
-export const PrimaryLink = tw(NavLink)`
-  lg:mx-0
-  px-8 py-3 rounded bg-primary-500 text-gray-100
-  hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline
-  border-b-0
+export const IconLinks = tw.div`flex items-center gap-4 lg:ml-4`;
+const IconLabel = styled.span`
+  position: absolute;
+  top: 100%;
+  margin-top: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #f3f4f6;
+  background: #1f2937;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+export const IconLink = styled.a`
+  ${tw`relative inline-flex flex-col items-center text-primary-500 hover:text-primary-700 transition duration-300`}
+  svg {
+    ${tw`w-5 h-5`}
+  }
+  &:hover ${IconLabel} {
+    opacity: 1;
+  }
 `;
 
 export const LogoLink = styled(NavLink)`
@@ -56,19 +80,35 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `;
 
+export const HeaderRight = tw.div`flex flex-col lg:flex-row flex-1 lg:flex-initial items-center lg:justify-end gap-4 lg:gap-6`;
+
 export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "lg" }) => {
   const defaultLinks = [
-    <NavLinks key={1}>
-      <NavLink href="#/">Home</NavLink>
-      <NavLink href="#/leaderboard">Leaderboard</NavLink>
-      <NavLink href="#/prompts">Prompts</NavLink>
-      <NavLink href="#/results">Results</NavLink>
-      <NavLink href="#/team">Team</NavLink>
-      <NavLink href="#/blog">Blog</NavLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} href="https://github.com/Vica1106/Judging-the-Judges" target="_blank">
-        GitHub
-      </PrimaryLink>
-    </NavLinks>
+    <HeaderRight key="right">
+      <NavLinks key="nav">
+        <NavLink href="#/">Home</NavLink>
+        <NavLink href="#/introduction">Introduction</NavLink>
+        <NavLink href="#/leaderboard">Leaderboard</NavLink>
+        <NavLink href="#/prompts">Prompts</NavLink>
+        <NavLink href="#/results">Results</NavLink>
+        <NavLink href="#/team">Team</NavLink>
+        <NavLink href="#/blog">Blog</NavLink>
+      </NavLinks>
+      <IconLinks key="icons">
+        <IconLink href="https://github.com/Vica1106/Judging-the-Judges" target="_blank" rel="noreferrer" title="GitHub">
+          <GithubIcon />
+          <IconLabel>GitHub</IconLabel>
+        </IconLink>
+        <IconLink href="https://drive.google.com/" target="_blank" rel="noreferrer" title="Report">
+          <FileTextIcon />
+          <IconLabel>Report</IconLabel>
+        </IconLink>
+        <IconLink href="https://drive.google.com/" target="_blank" rel="noreferrer" title="Poster">
+          <ImageIcon />
+          <IconLabel>Poster</IconLabel>
+        </IconLink>
+      </IconLinks>
+    </HeaderRight>
   ];
 
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();

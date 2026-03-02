@@ -11,7 +11,6 @@ import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons";
 
 import homePic from "images/homepic.png";
 import homePic1 from "images/homepic1.png";
-import overallPipeline from "images/overall_pipeline.png";
 
 const HeroContainer = tw.div`relative py-20 md:py-24`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row lg:items-center max-w-screen-xl mx-auto`;
@@ -53,16 +52,26 @@ const Stat = tw.div`flex flex-col items-center text-center p-4 sm:p-8 tracking-w
 const StatValue = tw.div`text-4xl sm:text-5xl font-bold text-primary-500`;
 const StatLabel = tw.div`text-sm sm:text-base text-gray-600 mt-2 font-medium`;
 
+const ResultsTopSection = tw.div`mt-16`;
+const ResultsTopHeading = tw(SectionHeading)`text-2xl sm:text-3xl font-bold text-gray-900 text-center`;
+const ResultsTopDescription = tw.p`mt-4 text-gray-600 text-center max-w-2xl mx-auto`;
+const MetricRow = tw.div`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10`;
+const MetricCard = tw.div`bg-white rounded-xl shadow p-6 border border-gray-100 text-center`;
+const MetricValue = tw.div`text-3xl font-bold text-primary-500`;
+const MetricLabel = tw.div`text-gray-700 mt-2 font-medium`;
+
+const ApproachSection = tw.div`mt-16`;
+const ApproachHeading = tw(SectionHeading)`text-2xl sm:text-3xl font-bold text-gray-900 text-center`;
+const ApproachDescription = tw.p`mt-4 text-gray-600 text-center max-w-3xl mx-auto`;
+const ApproachList = tw.ul`mt-8 space-y-3 max-w-3xl mx-auto`;
+const ApproachItem = tw.li`flex items-start`;
+const ApproachBullet = tw.span`w-2 h-2 mt-2 bg-primary-500 rounded-full flex-shrink-0`;
+const ApproachText = tw.p`ml-3 text-gray-700 leading-relaxed`;
+
 const FeatureList = tw.ul`mt-12 leading-loose`;
 const Feature = tw.li`flex items-center`;
 const FeatureIcon = tw.span`w-5 h-5 bg-primary-500 rounded-full flex-shrink-0`;
 const FeatureText = tw.span`ml-3 font-medium text-gray-700`;
-
-const PipelineSection = tw.div`mt-20 text-center`;
-const PipelineHeading = tw(SectionHeading)`text-3xl sm:text-4xl font-bold`;
-const PipelineDescription = tw.p`mt-4 text-sm md:text-base lg:text-lg font-medium leading-relaxed text-gray-600 max-w-3xl mx-auto`;
-const PipelineImageContainer = tw.div`mt-10 flex justify-center`;
-const PipelineImage = tw.img`w-full max-w-6xl rounded-lg shadow-xl`;
 
 const images = [homePic, homePic1];
 
@@ -116,6 +125,48 @@ export default () => {
             </TwoColumn>
           </HeroContainer>
 
+          <ApproachSection>
+            <ApproachHeading>Approach summary</ApproachHeading>
+            <ApproachDescription>
+              We evaluate instruction-following for explanations by combining LLM-as-Judge pairwise
+              comparisons with human rubric scoring, then iteratively refine prompts and measure
+              stability across domains.
+            </ApproachDescription>
+
+            <ApproachList>
+              <ApproachItem>
+                <ApproachBullet />
+                <ApproachText>
+                  <strong>Concept set:</strong> 30 technical concepts sourced from Wikipedia domain
+                  glossaries (AI, Computer Science, Statistics), split evenly by domain.
+                </ApproachText>
+              </ApproachItem>
+              <ApproachItem>
+                <ApproachBullet />
+                <ApproachText>
+                  <strong>Prompt rounds:</strong> Round 1 uses 5 base prompt templates; Round 2
+                  generates 5 refined prompts based on first-round weaknesses.
+                </ApproachText>
+              </ApproachItem>
+              <ApproachItem>
+                <ApproachBullet />
+                <ApproachText>
+                  <strong>LLM-as-Judge:</strong> Pairwise comparisons run in both directions (A→B and
+                  B→A) to reduce order bias, with retries for invalid outputs; results are aggregated
+                  into prompt rankings using Elo scores.
+                </ApproachText>
+              </ApproachItem>
+              <ApproachItem>
+                <ApproachBullet />
+                <ApproachText>
+                  <strong>Human evaluation:</strong> Rubric-based scoring captures clarity and
+                  learnability signals that automated evaluation can miss; we compare human vs LLM
+                  rankings and analyze divergence.
+                </ApproachText>
+              </ApproachItem>
+            </ApproachList>
+          </ApproachSection>
+          
           <StatsContainer>
             <Stat>
               <StatValue>30</StatValue>
@@ -131,36 +182,33 @@ export default () => {
             </Stat>
           </StatsContainer>
 
-          <PipelineSection>
-            <PipelineHeading>Our Pipeline</PipelineHeading>
-            <PipelineDescription>
-              An iterative ranking-and-improvement pipeline that combines LLM judges with human evaluations to systematically identify and refine the most effective prompt styles.
-            </PipelineDescription>
-            <PipelineImageContainer>
-              <PipelineImage src={overallPipeline} alt="Overall Pipeline" />
-            </PipelineImageContainer>
-          </PipelineSection>
 
-          <FeatureList>
-            <Feature>
-              <FeatureIcon />
-              <FeatureText>
-                Iterative ranking-and-refinement pipeline for evaluating prompt styles
-              </FeatureText>
-            </Feature>
-            <Feature>
-              <FeatureIcon />
-              <FeatureText>
-                LLM-as-judge comparisons with rubric-based feedback on prompt weaknesses
-              </FeatureText>
-            </Feature>
-            <Feature>
-              <FeatureIcon />
-              <FeatureText>
-                Large-scale human evaluation comparing original and revised prompt styles
-              </FeatureText>
-            </Feature>
-          </FeatureList>
+          <ResultsTopSection>
+            <ResultsTopHeading>Key Resultss</ResultsTopHeading>
+            <ResultsTopDescription>
+              LLM-as-a-Judge demonstrates moderate agreement with human evaluation, strong
+              cross-domain robustness, and measurable stylistic divergence.
+            </ResultsTopDescription>
+
+            <MetricRow>
+              <MetricCard>
+                <MetricValue>&rho; = 0.73</MetricValue>
+                <MetricLabel>Human-LLM Ranking Correlation</MetricLabel>
+              </MetricCard>
+              <MetricCard>
+                <MetricValue>&tau; ≈ 0.90</MetricValue>
+                <MetricLabel>Cross-Domain Stability</MetricLabel>
+              </MetricCard>
+              <MetricCard>
+                <MetricValue>0.84</MetricValue>
+                <MetricLabel>Highest Prompt Win Rate</MetricLabel>
+              </MetricCard>
+              <MetricCard>
+                <MetricValue>+0.20</MetricValue>
+                <MetricLabel>Largest Refinement Gain</MetricLabel>
+              </MetricCard>
+            </MetricRow>
+          </ResultsTopSection>
 
         </ContentWithPaddingXl>
       </Container>
