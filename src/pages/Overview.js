@@ -56,7 +56,7 @@ export default () => {
         <ContentWithPaddingXl>
           <HeadingRow>
             <Subheading>Overview</Subheading>
-            <Heading>Introduction</Heading>
+            <Heading>Overview</Heading>
             <Paragraph css={tw`text-center max-w-2xl mt-4`}>
               What we solve, who it&apos;s for, and how we approach it.
             </Paragraph>

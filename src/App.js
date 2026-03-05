@@ -9,7 +9,7 @@ import Home from "pages/Home.js";
 import Leaderboard from "pages/Leaderboard.js";
 import Prompts from "pages/Prompts.js";
 import Results from "pages/Results.js";
-import Introduction from "pages/Introduction.js";
+import Overview from "pages/Overview.js";
 import Team from "pages/Team.js";
 import Blog from "pages/BlogIndex.js";
 
@@ -23,7 +23,7 @@ export default function App() {
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/prompts" element={<Prompts />} />
           <Route path="/results" element={<Results />} />
-          <Route path="/introduction" element={<Introduction />} />
+          <Route path="/overview" element={<Overview />} />
           <Route path="/team" element={<Team />} />
           <Route path="/blog" element={<Blog />} />
         </Routes>

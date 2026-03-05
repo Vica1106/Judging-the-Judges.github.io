@@ -9,9 +9,11 @@ import { Container, ContentWithPaddingXl } from "components/misc/Layouts";
 import { SectionHeading, Subheading as SubheadingBase } from "components/misc/Headings";
 
 import team1 from "images/team1.JPG";
-import team2 from "images/team2.png";
+import team2 from "images/team2.jpeg";
 import team3 from "images/team3.png";
 import team4 from "images/team4.JPG";
+import advisor1 from "images/adv1.jpg";
+import advisor2 from "images/adv2.png";
 
 import ucsdLogo from "images/ucsd.png";
 import hondaLogo from "images/99plab.png";
@@ -78,10 +80,12 @@ const teamMembers = [
   },
   {
     name: "Rajeev Chhajer",
+    image: advisor2,
     role: "Advisor"
   },
   {
     name: "Ryan Lingo",
+    image: advisor1,
     role: "Advisor"
   },
 ];

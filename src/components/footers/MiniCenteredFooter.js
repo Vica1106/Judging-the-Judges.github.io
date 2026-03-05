@@ -60,7 +60,7 @@ export default () => {
           </LogoContainer>
           <LinksContainer>
             <Link href="#/">Home</Link>
-            <Link href="#/introduction">Introduction</Link>
+            <Link href="#/overview">Overview</Link>
             <Link href="#/leaderboard">Leaderboard</Link>
             <Link href="#/prompts">Prompts</Link>
             <Link href="#/results">Results</Link>
@@ -72,7 +72,7 @@ export default () => {
               <GithubIcon />
               <SocialLinkLabel>GitHub</SocialLinkLabel>
             </SocialLink>
-            <SocialLink href="https://drive.google.com/" target="_blank" rel="noreferrer" title="Report">
+            <SocialLink href="https://drive.google.com/file/d/1xAlQo52aBaesr-8HJDg00FbhSdL7Kr4c/view?usp=sharing" target="_blank" rel="noreferrer" title="Report">
               <FileTextIcon />
               <SocialLinkLabel>Report</SocialLinkLabel>
             </SocialLink>

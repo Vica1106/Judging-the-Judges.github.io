@@ -87,7 +87,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
     <HeaderRight key="right">
       <NavLinks key="nav">
         <NavLink href="#/">Home</NavLink>
-        <NavLink href="#/introduction">Introduction</NavLink>
+        <NavLink href="#/overview">Overview</NavLink>
         <NavLink href="#/leaderboard">Leaderboard</NavLink>
         <NavLink href="#/prompts">Prompts</NavLink>
         <NavLink href="#/results">Results</NavLink>
@@ -99,7 +99,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
           <GithubIcon />
           <IconLabel>GitHub</IconLabel>
         </IconLink>
-        <IconLink href="https://drive.google.com/" target="_blank" rel="noreferrer" title="Report">
+        <IconLink href="https://drive.google.com/file/d/1xAlQo52aBaesr-8HJDg00FbhSdL7Kr4c/view?usp=sharing" target="_blank" rel="noreferrer" title="Report">
           <FileTextIcon />
           <IconLabel>Report</IconLabel>
         </IconLink>
