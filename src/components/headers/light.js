@@ -99,11 +99,11 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
           <GithubIcon />
           <IconLabel>GitHub</IconLabel>
         </IconLink>
-        <IconLink href="https://drive.google.com/file/d/1xAlQo52aBaesr-8HJDg00FbhSdL7Kr4c/view?usp=sharing" target="_blank" rel="noreferrer" title="Report">
+        <IconLink href="https://drive.google.com/file/d/1V9wAhNhalQYpOePFSHbFGyKpFF0Dh6or/view?usp=sharing" target="_blank" rel="noreferrer" title="Report">
           <FileTextIcon />
           <IconLabel>Report</IconLabel>
         </IconLink>
-        <IconLink href="https://drive.google.com/" target="_blank" rel="noreferrer" title="Poster">
+        <IconLink href="https://drive.google.com/file/d/1Q8SKwZxC-1No3ipur4rxB35PUMcflKGA/view?usp=sharing" target="_blank" rel="noreferrer" title="Poster">
           <ImageIcon />
           <IconLabel>Poster</IconLabel>
         </IconLink>

@@ -72,11 +72,11 @@ export default () => {
               <GithubIcon />
               <SocialLinkLabel>GitHub</SocialLinkLabel>
             </SocialLink>
-            <SocialLink href="https://drive.google.com/file/d/1xAlQo52aBaesr-8HJDg00FbhSdL7Kr4c/view?usp=sharing" target="_blank" rel="noreferrer" title="Report">
+            <SocialLink href="https://drive.google.com/file/d/1V9wAhNhalQYpOePFSHbFGyKpFF0Dh6or/view?usp=sharing" target="_blank" rel="noreferrer" title="Report">
               <FileTextIcon />
               <SocialLinkLabel>Report</SocialLinkLabel>
             </SocialLink>
-            <SocialLink href="https://drive.google.com/" target="_blank" rel="noreferrer" title="Poster">
+            <SocialLink href="https://drive.google.com/file/d/1Q8SKwZxC-1No3ipur4rxB35PUMcflKGA/view?usp=sharing" target="_blank" rel="noreferrer" title="Poster">
               <ImageIcon />
               <SocialLinkLabel>Poster</SocialLinkLabel>
             </SocialLink>
