@@ -92,7 +92,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
         <NavLink href="#/prompts">Prompts</NavLink>
         <NavLink href="#/results">Results</NavLink>
         <NavLink href="#/team">Team</NavLink>
-        <NavLink href="#/blog">Blog</NavLink>
+        <NavLink href="https://medium.com/p/775ab4952ccd">Blog</NavLink>
       </NavLinks>
       <IconLinks key="icons">
         <IconLink href="https://github.com/Vica1106/Judging-the-Judges" target="_blank" rel="noreferrer" title="GitHub">

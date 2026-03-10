@@ -211,29 +211,6 @@ export default () => {
             </Table>
           </TableContainer>
 
-          <SectionTitle>Round 1 LLM Rankings</SectionTitle>
-          <SmallTableContainer>
-            <Table>
-              <TableHead>
-                <tr>
-                  <TableHeader>LLM Rank</TableHeader>
-                  <TableHeader>Prompt Style</TableHeader>
-                  <TableHeader>Elo Score</TableHeader>
-                </tr>
-              </TableHead>
-              <TableBody>
-                {round1Data.map((item, index) => (
-                  <TableRow key={index}>
-                    <TableCell>
-                      <RankBadge rank={item.llmRank}>{item.llmRank}</RankBadge>
-                    </TableCell>
-                    <TableCell tw="font-semibold">{item.promptStyle}</TableCell>
-                    <TableCell tw="font-medium">{item.llmElo}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </SmallTableContainer>
 
           <SectionTitle>How Variance is Calculated</SectionTitle>
           <DescriptionSection>

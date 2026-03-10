@@ -65,7 +65,7 @@ export default () => {
             <Link href="#/prompts">Prompts</Link>
             <Link href="#/results">Results</Link>
             <Link href="#/team">Team</Link>
-            <Link href="#/blog">Blog</Link>
+            <Link href="https://medium.com/p/775ab4952ccd">Blog</Link>
           </LinksContainer>
           <SocialLinksContainer>
             <SocialLink href="https://github.com/Vica1106/Judging-the-Judges" target="_blank" rel="noreferrer" title="GitHub">
