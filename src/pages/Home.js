@@ -184,7 +184,7 @@ export default () => {
 
 
           <ResultsTopSection>
-            <ResultsTopHeading>Key Resultss</ResultsTopHeading>
+            <ResultsTopHeading>Key Results</ResultsTopHeading>
             <ResultsTopDescription>
               LLM-as-a-Judge demonstrates moderate agreement with human evaluation, strong
               cross-domain robustness, and measurable stylistic divergence.
